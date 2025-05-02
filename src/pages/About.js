@@ -1,24 +1,35 @@
-// src/pages/About.js
 import React from 'react';
 
 export default function About() {
   return (
-    <div>
-      <h1>👨‍💻 About This Project</h1>
+    <div className="about-page dark-theme">
+      <h1>📘 About This Project</h1>
       <p>
-        This project was created to explore the intersection of data science and public health by analyzing what factors most influence life expectancy worldwide.
+        This data science project was developed to explore global disparities in life expectancy.
+        Inspired by real-world challenges in public health and policy, our platform combines
+        visual storytelling, advanced machine learning, and accessible design to educate and engage users.
       </p>
-      <h2>🛠️ Tech Stack</h2>
+
+      <h2>🎯 Goals</h2>
       <ul>
-        <li>Frontend: React.js with Chart.js and Tailwind-inspired styling</li>
-        <li>Data Analysis: Python (pandas, scikit-learn)</li>
-        <li>Deployment: Vercel with GitHub integration</li>
-        <li>Dataset: WHO/UN Life Expectancy (2000–2015)</li>
+        <li>Raise awareness about health inequality through global datasets</li>
+        <li>Use statistical and machine learning tools to uncover trends</li>
+        <li>Encourage students and researchers to build upon our findings</li>
       </ul>
-      <h2>👤 Author</h2>
+
+      <h2>🔧 Tools & Technologies</h2>
+      <ul>
+        <li>React.js for UI development</li>
+        <li>Chart.js and Recharts for interactive graphs</li>
+        <li>Python (Scikit-learn) for model training (pre-processed)</li>
+        <li>GitHub & Vercel for hosting and deployment</li>
+      </ul>
+
       <p>
-        I’m Priyam Dave, a high school student passionate about data science, AI, and making research accessible. I plan to study Statistics and Data Science in college.
+        Developed by a passionate high school student exploring the intersection of
+        data science, health policy, and global development.
       </p>
     </div>
   );
 }
+

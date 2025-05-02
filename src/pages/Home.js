@@ -1,24 +1,46 @@
-// Home.js
 import React from 'react';
+import { Link } from 'react-router-dom';
+import './Home.css';
 
 export default function Home() {
   return (
-    <div>
-      <h1>🌍 AI-Powered Life Expectancy Prediction</h1>
-      <p>This full-stack React site explores how socio-economic and health indicators affect life expectancy around the world.</p>
+    <div className="home-page dark-theme">
+      <header className="home-header">
+        <h1>🌍 Global Life Expectancy Insights</h1>
+        <p>
+          Welcome to our interactive data science platform exploring global life expectancy.
+          Dive into country-level trends, socioeconomic impacts, and machine learning-based predictions.
+        </p>
+      </header>
 
-      <h2>🔍 Study Summary</h2>
-      <p>
-        Life expectancy is driven by access to healthcare, GDP, education, immunization, and lifestyle. Using a machine learning model with 18 predictors and data from 190+ countries (2000–2015), this project surfaced key global insights.
-      </p>
+      <section className="home-section">
+        <h2>🔍 Explore the Data</h2>
+        <p>
+          Our <Link to="/explore">Explore</Link> page offers interactive visualizations of life expectancy vs. GDP, highlighting global health disparities and economic patterns.
+        </p>
+      </section>
 
-      <h2>📈 What You’ll Find</h2>
-      <ul>
-        <li><strong>Explore:</strong> Visualizations of trends by country, GDP, HIV rates, and more</li>
-        <li><strong>Insights:</strong> Key takeaways from the ML model + predictions</li>
-        <li><strong>About:</strong> Tech stack + author</li>
-        <li><strong>Bibliography:</strong> Sources used in the study</li>
-      </ul>
+      <section className="home-section">
+        <h2>📊 Data Science Insights</h2>
+        <p>
+          On the <Link to="/insights">Insights</Link> page, you’ll find a deep dive into our machine learning models, predictor analysis, and policy implications based on real-world data.
+        </p>
+      </section>
+
+      <section className="home-section">
+        <h2>🧠 Project Mission</h2>
+        <p>
+          Our mission is to make complex global health data understandable and actionable.
+          We aim to support public policy, education, and awareness through data-driven storytelling.
+        </p>
+      </section>
+
+      <section className="home-section">
+        <h2>📚 Cited Sources</h2>
+        <p>
+          Visit the <Link to="/bibliography">Bibliography</Link> to explore our full list of WHO, UN, and academic data sources that power our analysis.
+        </p>
+      </section>
     </div>
   );
 }
