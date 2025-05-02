@@ -26,8 +26,8 @@ export default function About() {
       </ul>
 
       <p>
-        Developed by a passionate high school student exploring the intersection of
-        data science, health policy, and global development.
+      This website was created and published by <strong>Priyam Dave</strong> as part of a Data Science research project exploring life expectancy trends worldwide.
+      All analysis, modeling, and design was personally developed by the author.
       </p>
     </div>
   );
