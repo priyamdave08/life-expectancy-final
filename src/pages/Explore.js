@@ -1,167 +1,158 @@
+// src/pages/Explore.js
 import React from 'react';
+import { Line, Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
-  LineElement,
-  PointElement,
-  LinearScale,
   CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend,
-  BarElement,
-  ScatterController
 } from 'chart.js';
-import { Line, Scatter, Bar } from 'react-chartjs-2';
 
 ChartJS.register(
-  LineElement,
-  PointElement,
-  LinearScale,
   CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
   Title,
   Tooltip,
-  Legend,
-  BarElement,
-  ScatterController
+  Legend
 );
 
 export default function Explore() {
-  const lifeExpectancyTrend = {
-    labels: ['2000', '2003', '2006', '2009', '2012', '2015'],
+  const lineData = {
+    labels: ['2000', '2005', '2010', '2015', '2020'],
     datasets: [
       {
-        label: 'Global Life Expectancy (years)',
-        data: [67.3, 68.1, 69.2, 70.0, 70.8, 71.4],
-        borderColor: '#4ade80',
-        backgroundColor: 'rgba(74,222,128,0.2)',
-        tension: 0.4,
+        label: 'Global Average Life Expectancy',
+        data: [67.5, 68.9, 70.2, 71.4, 72.6],
+        borderColor: 'rgba(54, 162, 235, 1)',
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
         fill: true,
       },
     ],
   };
 
-  const gdpScatter = {
+  const barData = {
+    labels: ['Norway', 'Japan', 'Switzerland', 'India', 'Nigeria'],
     datasets: [
       {
-        label: 'GDP vs Life Expectancy',
-        data: [
-          { x: 400, y: 55 },
-          { x: 1200, y: 60 },
-          { x: 5000, y: 68 },
-          { x: 12000, y: 74 },
-          { x: 25000, y: 78 },
-          { x: 40000, y: 82 },
-        ],
-        backgroundColor: 'rgba(59,130,246,0.6)',
+        label: 'Life Expectancy (2020)',
+        data: [82.5, 84.2, 83.6, 69.5, 54.3],
+        backgroundColor: 'rgba(75, 192, 192, 0.6)',
       },
     ],
-  };
-
-  const hivBar = {
-    labels: ['Botswana', 'South Africa', 'Nigeria', 'USA', 'Germany', 'Japan'],
-    datasets: [
-      {
-        label: 'HIV Prevalence (%) vs Life Expectancy',
-        data: [
-          { x: 24.8, y: 50 },
-          { x: 18.9, y: 56 },
-          { x: 3.1, y: 60 },
-          { x: 0.3, y: 78 },
-          { x: 0.1, y: 81 },
-          { x: 0.1, y: 84 },
-        ],
-        parsing: {
-          xAxisKey: 'x',
-          yAxisKey: 'y'
-        },
-        backgroundColor: 'rgba(239,68,68,0.6)'
-      }
-    ]
   };
 
   return (
     <div className="page">
       <div className="section">
-        <h1>📊 Explore Life Expectancy Trends</h1>
+        <h1>📈 Explore the Data</h1>
         <p>
-          This section explores key global health and development trends using visualized data from 2000 to 2015. These insights highlight how macro-level indicators such as GDP, education, and disease prevalence correlate with national life expectancy.
+          This page presents detailed data visualizations and breakdowns of life expectancy trends
+          across countries, time periods, and health/income factors. All data used is sourced from
+          the WHO Global Health Observatory, the World Bank, and the United Nations Statistical
+          Division.
         </p>
       </div>
 
       <div className="section">
-        <h2>🌍 Global Life Expectancy Over Time</h2>
+        <h2>🌐 Global Trend Over Time</h2>
+        <Line data={lineData} options={{ responsive: true }} />
         <p>
-          Life expectancy has increased steadily over the past 15 years due to advancements in healthcare, disease control, and global public health policy. This trend chart shows the global average based on WHO reports.
+          Over the past two decades, the global average life expectancy has increased due to
+          advancements in immunization coverage, maternal health, and economic development.
+          However, inequalities persist by region.
         </p>
-        <Line data={lifeExpectancyTrend} options={{
-          plugins: {
-            legend: { labels: { color: '#ffffff' } },
-            title: { display: true, text: 'Global Life Expectancy (2000–2015)', color: '#ffffff' }
-          },
-          scales: {
-            x: { ticks: { color: '#ffffff' }, grid: { color: '#333' } },
-            y: { ticks: { color: '#ffffff' }, grid: { color: '#333' } }
-          }
-        }} />
       </div>
 
       <div className="section">
-        <h2>💰 GDP vs Life Expectancy</h2>
+        <h2>🏆 Country Comparisons</h2>
+        <Bar data={barData} options={{ responsive: true }} />
         <p>
-          Economic strength plays a critical role in public health outcomes. Countries with higher GDP per capita often demonstrate significantly higher life expectancy. The following scatter plot illustrates this correlation.
+          The gap between developed and developing nations is striking. Nations like Japan and
+          Norway benefit from universal healthcare and high education levels. In contrast, countries
+          like Nigeria face challenges from limited health infrastructure and political instability.
         </p>
-        <Scatter data={gdpScatter} options={{
-          plugins: {
-            legend: { labels: { color: '#ffffff' } },
-            title: { display: true, text: 'GDP per Capita vs Life Expectancy', color: '#ffffff' }
-          },
-          scales: {
-            x: {
-              title: { display: true, text: 'GDP per Capita (USD)', color: '#ffffff' },
-              ticks: { color: '#ffffff' },
-              grid: { color: '#333' }
-            },
-            y: {
-              title: { display: true, text: 'Life Expectancy (years)', color: '#ffffff' },
-              ticks: { color: '#ffffff' },
-              grid: { color: '#333' }
-            }
-          }
-        }} />
       </div>
 
       <div className="section">
-        <h2>🦠 HIV Prevalence Impact</h2>
+        <h2>📊 GDP vs Life Expectancy</h2>
         <p>
-          One of the most destructive variables in life expectancy during the early 2000s was the HIV/AIDS epidemic. Countries with high prevalence rates experienced sharp declines in population health. This chart demonstrates how HIV correlates with suppressed life expectancy.
+          GDP per capita is positively correlated with life expectancy, but the strength of that
+          relationship varies. Some nations achieve high longevity with low GDP through strong
+          preventive care programs, like Cuba and Vietnam.
         </p>
-        <Bar data={hivBar} options={{
-          plugins: {
-            legend: { labels: { color: '#ffffff' } },
-            title: { display: true, text: 'HIV Rate vs Life Expectancy', color: '#ffffff' }
-          },
-          scales: {
-            x: {
-              title: { display: true, text: 'HIV Prevalence (%)', color: '#ffffff' },
-              ticks: { color: '#ffffff' },
-              grid: { color: '#333' }
-            },
-            y: {
-              title: { display: true, text: 'Life Expectancy (years)', color: '#ffffff' },
-              ticks: { color: '#ffffff' },
-              grid: { color: '#333' }
-            }
-          }
-        }} />
       </div>
 
       <div className="section">
-        <h2>📌 Regional Case Study: Rwanda vs Switzerland</h2>
+        <h2>📚 Education & Literacy Rates</h2>
         <p>
-          Rwanda and Switzerland provide two extremes in life expectancy trends. In 2000, Rwanda was recovering from genocide and widespread disease, with a life expectancy under 50. Through public health reforms, foreign aid, and immunization programs, it rose to over 64 by 2015.
+          Education, particularly of women, is one of the strongest predictors of population health.
+          Countries with average schooling above 10 years tend to report significantly lower infant
+          mortality and higher life expectancy.
         </p>
+        <ul>
+          <li>South Korea: Improved from 6.2 years in 1980 to 13.3 years by 2020</li>
+          <li>India: Disparities in rural education slow progress</li>
+          <li>Sub-Saharan Africa: Lowest global female literacy rates</li>
+        </ul>
+      </div>
+
+      <div className="section">
+        <h2>🏥 Health Expenditure Trends</h2>
         <p>
-          Switzerland, by contrast, has consistently maintained a life expectancy above 80 years, supported by one of the world's strongest healthcare systems, high GDP per capita, and excellent education infrastructure. These nations show how policy and investment shape demographic health outcomes.
+          Countries that spend over 9% of GDP on health often achieve better longevity, but spending
+          must be efficient. The US, despite spending over 17% of GDP, lags behind OECD peers in
+          life expectancy due to inequality and chronic disease rates.
+        </p>
+      </div>
+
+      <div className="section">
+        <h2>🧪 Epidemiological Case Insights</h2>
+        <ul>
+          <li>
+            <strong>Lesotho:</strong> Life expectancy dropped due to HIV/AIDS, but rose after ART
+            access in 2010
+          </li>
+          <li>
+            <strong>Japan:</strong> High salt intake offset by longevity due to social health access
+          </li>
+          <li>
+            <strong>Bangladesh:</strong> Rapid gains with minimal resources through vaccination
+            campaigns
+          </li>
+        </ul>
+      </div>
+
+      <div className="section">
+        <h2>🌍 Regional Insights Summary</h2>
+        <ul>
+          <li>
+            <strong>Europe:</strong> Aging population driving up healthcare needs; consistent high
+            life expectancy
+          </li>
+          <li>
+            <strong>Africa:</strong> Under-5 mortality, malaria, and low female literacy are major
+            constraints
+          </li>
+          <li>
+            <strong>Asia:</strong> Large disparities between Southeast Asia and Central Asia
+          </li>
+        </ul>
+      </div>
+
+      <div className="section">
+        <h2>📌 Final Thoughts</h2>
+        <p>
+          Life expectancy is a multidimensional indicator. While income plays a role, education,
+          immunization coverage, sanitation, and cultural norms all interact to shape the health of
+          populations. Reducing inequality and improving access to education remains essential.
         </p>
       </div>
     </div>
